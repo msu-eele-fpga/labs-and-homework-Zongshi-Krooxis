@@ -1,10 +1,1 @@
-C:/Users/Aaron/labs-and-homework-Zongshi-Krooxis/sim/hw-3/synchronizer_tb.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Aaron/labs-and-homework-Zongshi-Krooxis/sim/hw-3/synchronizer_tb.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity synchronizer_tb
--- Compiling architecture testbench of synchronizer_tb
--- Loading package ENV
 
-} {} {}}
