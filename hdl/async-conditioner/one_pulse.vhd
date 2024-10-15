@@ -48,17 +48,21 @@ architecture one_pulse_arch of one_pulse is
 
 	NEXT_STATE_LOGIC : process(cur_state, input)
 	    begin
-		case cur_state is
-		    when start		=> 	if(input = '1') then
-						    next_state <= pulse_state;
-						else
-						    next_state <= start;
-						end if;
-		    when pulse_state	=>	next_state <= wait_state;
-		    when wait_state	=>	if(input = '0') then
-						    next_state <= start;
-						end if;
-		end case;
+		if (rst = '1')  then
+		    next_state <= start;
+		else
+		    case cur_state is
+		    	when start		=> 	if(input = '1') then
+						    	    next_state <= pulse_state;
+							else
+						    	    next_state <= start;
+							end if;
+		    	when pulse_state	=>	next_state <= wait_state;
+		    	when wait_state		=>	if(input = '0') then
+						    	    next_state <= start;
+							end if;
+		    end case;
+		end if;
 	end process;
 
 	OUTPUT_LOGIC : process(cur_state)
