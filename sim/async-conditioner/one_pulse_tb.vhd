@@ -19,8 +19,8 @@ architecture one_pulse_tb_arch of one_pulse_tb is
 
     component one_pulse is
     	port (
-	    clk : in std_ulogic;
-	    rst : in std_ulogic;
+	    clk   : in std_ulogic;
+	    rst   : in std_ulogic;
 	    input : in std_ulogic;
 	    pulse : out std_ulogic
     	);
@@ -42,6 +42,7 @@ architecture one_pulse_tb_arch of one_pulse_tb is
 		wait_for_clock_edges(clk_tb, 1);
 		rst_tb <= '1'; wait for CLK_PERIOD; 	-- in to Reset
 		rst_tb <= '0'; wait for CLK_PERIOD; 	-- out of Reset
+--		input_tb <= '1';
 		input_tb <= '1';  wait for 2*CLK_PERIOD;-- input high 2 cycles
 		input_tb <= '0'; wait for 2*CLK_PERIOD;	-- input low for 2 cycles
 		input_tb <= '1';  wait for CLK_PERIOD;	-- input high 1 cycles
@@ -58,6 +59,9 @@ architecture one_pulse_tb_arch of one_pulse_tb is
 		wait_for_clock_edges(clk_tb, 1);
 		pulse_expected <= '0'; wait for 3*CLK_PERIOD;
 		pulse_expected <= '1'; wait for CLK_PERIOD;
+
+--		pulse_expected <= '0';
+
 		pulse_expected <= '0'; wait for 3*CLK_PERIOD;
 		pulse_expected <= '1'; wait for CLK_PERIOD;
 		pulse_expected <= '0'; wait for CLK_PERIOD;
