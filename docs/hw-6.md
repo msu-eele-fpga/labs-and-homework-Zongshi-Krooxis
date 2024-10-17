@@ -6,4 +6,4 @@ When external signals are used with FPGAs, such as a signal coming from a pushbu
 ## Deliverables
 ![Deliverable for HW-6: Waveform of Debouncer Test Bench](assets/hw-6_debouncer.png)
 ![Deliverable for HW-6: Waveform of One_Pulse Test Bench](assets/hw-6_one-pulse.png)
-![Deliverable for HW-6: Waveform of Async-Conditioner Test Bench](assets/hw-6_async_cond.png)
+![Deliverable for HW-6: Waveform of Async-Conditioner Test Bench](assets/hw-6_async-cond.png)
