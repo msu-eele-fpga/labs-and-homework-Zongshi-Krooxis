@@ -196,7 +196,7 @@ architecture led_patterns_arch of led_patterns is
 	    mux_out	=> mux_out_top);
 
 ----------------------------------------------------------------
--- - - - - - - COMPONENT INSTANTIATION
+-- - - - - - - 
 ----------------------------------------------------------------
 
 
