@@ -5,13 +5,13 @@ use ieee.numeric_std.all;
 entity mux is
     port (
 	rst	: in  std_ulogic;
-	in1 	: in  std_ulogic;
-	in2 	: in  std_ulogic;
-	in3 	: in  std_ulogic;
-	in4 	: in  std_ulogic;
-	in5 	: in  std_ulogic;
-	sel	: in  integer;
-	mux_out	: out std_ulogic
+	in1 	: in  std_ulogic_vector(7 downto 0);
+	in2 	: in  std_ulogic_vector(7 downto 0);
+	in3 	: in  std_ulogic_vector(7 downto 0);
+	in4 	: in  std_ulogic_vector(7 downto 0);
+	in5 	: in  std_ulogic_vector(7 downto 0);
+	sel	: in  std_ulogic_vector(2 downto 0);
+	mux_out	: out std_ulogic_vector(7 downto 0)
     );
 end entity;
 
@@ -20,21 +20,21 @@ architecture mux_arch of mux is
         MUXING : process (sel, rst)
 	    begin
 		if (rst = '0') then
-		    if    (sel = 0) then
+		    if    (sel = "000") then
 			mux_out <= in1;
-		    elsif (sel = 1) then
+		    elsif (sel = "001") then
 			mux_out <= in2;
-		    elsif (sel = 2) then
+		    elsif (sel = "010") then
 			mux_out <= in3;
-		    elsif (sel = 3) then
+		    elsif (sel = "011") then
 			mux_out <= in4;
-		    elsif (sel = 4) then
+		    elsif (sel = "100") then
 			mux_out <= in5;
 		    else
-			mux_out <= '0';
+			mux_out <= "00000000";
 		    end if;
 		else
-		    mux_out <= '0';
+		    mux_out <= "00000000";
 		end if;
         end process;
 

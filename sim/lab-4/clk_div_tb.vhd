@@ -53,7 +53,7 @@ architecture clk_div_tb_arch of clk_div_tb is
 
   	    begin
 
-    		for i in 0 to 9 loop
+    		for i in 0 to 500 loop
 
 --        	    assert sync_expected = sync_tb
 --        	    	report "Error for clock cycle " & to_string(i) & ":" & LF & "sync = " & to_string(sync_tb) & " sync_expected  = " & to_string(sync_expected)

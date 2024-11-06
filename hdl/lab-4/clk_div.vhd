@@ -23,7 +23,10 @@ end entity;
 
 architecture clk_div_arch of clk_div is
 
-    constant baseClkRate : unsigned(27 downto 0) := "0010111110101111000010000000";
+    constant baseClkRate : unsigned(27 downto 0) := "0010111110101111000010000000"; -- 50MHz
+
+    -- constant baseClkRate : unsigned(7 downto 0) := "00101000"; -- test 80 Hz
+
     signal	cnt_half, 
 		cnt_quarter, 
 		cnt_eighth, 
