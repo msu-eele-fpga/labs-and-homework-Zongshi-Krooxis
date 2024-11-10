@@ -11,5 +11,24 @@ entity pattern4 is
 end entity;
 
 architecture pattern4_arch of pattern4 is
+
+    signal cnt : integer := 0;
+
     begin
+	CNTR : process (clk)
+	    begin
+		if(rst = '0') then
+		    if(rising_edge(clk)) then
+			if (cnt = 0) then
+			    cnt <= 255;
+			else
+			    cnt <= cnt-1;
+			end if;
+		    end if;
+		else
+		    cnt <= 0;
+		end if;
+	end process;
+
+	pattern <= std_ulogic_vector(to_unsigned(cnt, 8));
 end architecture;
