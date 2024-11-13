@@ -43,6 +43,7 @@ architecture led_patterns_arch of led_patterns is
 	    in4 	: in  std_ulogic_vector(7 downto 0);
 	    in5 	: in  std_ulogic_vector(7 downto 0);
 	    sel		: in  std_ulogic_vector(2 downto 0);
+	    sw		: in  std_ulogic_vector(3 downto 0);
 	    mux_out	: out std_ulogic_vector(7 downto 0)
 	);
     end component;
@@ -100,12 +101,16 @@ architecture led_patterns_arch of led_patterns is
     end component;
 
     component state_change is
-	port(
+    	generic(
+	    clk_per	: in  time := 20 ns
+    	);
+    	port(
 	    rst 	: in  std_ulogic;
 	    clk 	: in  std_ulogic;
 	    button	: in  std_ulogic;
-	    sel		: out std_ulogic_vector(2 downto 0)
-	);
+	    sw	: in  std_ulogic_vector(3 downto 0);
+	    sel	: out std_ulogic_vector(2 downto 0)
+    	);
     end component;
 
 ----------------------------------------------------------------
@@ -139,7 +144,8 @@ architecture led_patterns_arch of led_patterns is
 	    rst => rst,
 	    clk => clk,
 	    button => sync_top,
-	    sel => sel_top);
+	    sel => sel_top,
+	    sw => switches);
 
 ------- Patterns
 	PAT1 : pattern1 port map (
@@ -193,6 +199,7 @@ architecture led_patterns_arch of led_patterns is
 	    in4 	=> pattern4_top,
 	    in5 	=> pattern5_top,
 	    sel		=> sel_top,
+	    sw		=> switches,
 	    mux_out	=> mux_out_top);
 
 ----------------------------------------------------------------

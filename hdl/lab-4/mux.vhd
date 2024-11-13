@@ -11,6 +11,7 @@ entity mux is
 	in4 	: in  std_ulogic_vector(7 downto 0);
 	in5 	: in  std_ulogic_vector(7 downto 0);
 	sel	: in  std_ulogic_vector(2 downto 0);
+	sw	: in  std_ulogic_vector(3 downto 0);
 	mux_out	: out std_ulogic_vector(7 downto 0)
     );
 end entity;
@@ -31,10 +32,10 @@ architecture mux_arch of mux is
 		    elsif (sel = "100") then
 			mux_out <= in5;
 		    else
-			mux_out <= "00000000";
+			mux_out <= "0000" & sw;
 		    end if;
 		else
-		    mux_out <= "00000000";
+		    mux_out <= "11111111";
 		end if;
         end process;
 
