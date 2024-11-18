@@ -1,9 +1,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.assert_pkg.all;
-use work.print_pkg.all;
-use work.tb_pkg.all;
+--use work.assert_pkg.all;
+--use work.print_pkg.all;
+--use work.tb_pkg.all;
 
 
 entity aysnc_conditioner is
@@ -52,6 +52,7 @@ architecture aysnc_conditioner_arch of aysnc_conditioner is
     signal debounced_cond : std_ulogic := '0';
 
     constant DEBOUNCE_TIME : time := 100 ns;
+	 constant CLK_PERIOD : time := 20 ns;
 
 
     begin

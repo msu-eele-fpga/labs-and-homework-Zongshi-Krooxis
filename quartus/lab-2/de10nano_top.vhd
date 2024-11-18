@@ -57,7 +57,7 @@ entity de10nano_top is
     --  See DE10 Nano User Manual page 26
     --  Setting LED to 1 will turn it on
     ----------------------------------------
-    led : out   std_logic_vector(7 downto 0);
+    led : out   std_ulogic_vector(7 downto 0);
 
     ----------------------------------------
     --  GPIO expansion headers (40-pin)
@@ -83,25 +83,53 @@ architecture de10nano_arch of de10nano_top is
 	----------------------------------------
 	--  Component Declaration
 	----------------------------------------
-
+	
 	component led_patterns is
 		generic (
 			system_clock_period : time := 20 ns
 		);
 		port (
-			clk : in std_ulogic;
-			rst : in std_ulogic;
-			push_button : in std_ulogic;
-			switches : in std_ulogic_vector(3 downto 0);
-			hps_led_control : in boolean;
-			base_period : in unsigned(7 downto 0);
-			led_reg : in std_ulogic_vector(7 downto 0);
-			led : out std_ulogic_vector(7 downto 0)
+			clk 					: in std_ulogic;
+			rst 					: in std_ulogic;
+			push_button 		: in std_ulogic;
+			switches 			: in std_ulogic_vector(3 downto 0);
+			hps_led_control 	: in boolean;
+			base_period 		: in unsigned(7 downto 0);
+			led_reg 				: in std_ulogic_vector(7 downto 0);
+			led					: out std_ulogic_vector(7 downto 0)
 		);
 	end component led_patterns;
-
+	
+	----------------------------------------
+	--  Signal Declaration
+	----------------------------------------
+	
+	Constant REG_PLACEHOLDER : std_ulogic_vector(7 downto 0) := "00000000";
+	
 	begin
+	
+	----------------------------------------
+	--  Component Mapping
+	----------------------------------------
+	
+	LED_PATTERN_GENERATOR : led_patterns
+		generic map (
+			system_clock_period => 20 ns
+		)
+		port map (
+			clk 					=> fpga_clk1_50,
+			rst 					=> push_button_n(0),
+			push_button 		=> push_button_n(1),
+			switches 			=> std_ulogic_vector(sw),
+			hps_led_control 	=> false,
+			base_period			=> "00000000",
+			led_reg 				=> "00000000",
+			led 	 				=> led
+		);
+	
+	
+	
 
-		led(3 downto 0) <= sw(3 downto 0);
+		--led(3 downto 0) <= sw(3 downto 0);
 
 end architecture de10nano_arch;
